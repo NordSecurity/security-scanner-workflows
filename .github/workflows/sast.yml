@@ -36,8 +36,6 @@ on:
 env:
   project-action-path: |
     actions/sast-action-test
-    base/sast-action
-  action-path: ./.github/workflows/sast/actions/sast-action-test
 jobs:
   authorize:
     environment:
@@ -64,8 +62,19 @@ jobs:
           ssh-key: ${{ secrets.SAST_ACTION_KEY }}
           path: .github/workflows/sast
           # Checking out only SAST action and composite project configuration action
-          sparse-checkout: ${{ env.project-action-path }}
-      - uses: ${{ env.action-path }}
+          sparse-checkout: |
+            base/sast-action
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
+        with: 
+          repository: NordSecurity/sast-configs
+          ref: main
+          ssh-key: ${{ secrets.SAST_ACTION_KEY }}
+          path: .github/workflows/sast/action
+          # Checking out only SAST action and composite project configuration action
+          sparse-checkout: |
+            actions/sast-action-test/action.yml
+          sparse-checkout-cone-mode: false
+      - uses: ./.github/workflows/sast/action/action.yml
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
           SAST_URL: ${{ secrets.SAST_URL }}
