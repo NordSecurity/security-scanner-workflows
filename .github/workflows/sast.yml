@@ -33,7 +33,8 @@ on:
       SAST_CLIENT_SECRET:
         description: 'SAST Client Secret'
         required: true
-
+env:
+  project-action-path: sast-action-test
 jobs:
   authorize:
     environment:
@@ -62,7 +63,7 @@ jobs:
           # Checking out only SAST action and composite project configuration action
           sparse-checkout: |
             base/sast-action
-            actions/${{ inputs.project-action-path }}
+            actions/${{ env.project-action-path }}
       - uses: ./.github/workflows/sast/actions/${{ inputs.project-action-path }}
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
