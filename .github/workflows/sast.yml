@@ -65,7 +65,7 @@ jobs:
           path: .github/workflows/sast
           # Checking out only SAST action and composite project configuration action
           sparse-checkout: ${{ env.project-action-path }}
-      - uses: ${{ env.project-path }}
+      - uses: ${{ env.action-path }}
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
           SAST_URL: ${{ secrets.SAST_URL }}
