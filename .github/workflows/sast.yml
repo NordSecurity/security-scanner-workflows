@@ -71,9 +71,9 @@ jobs:
           ssh-key: ${{ secrets.SAST_ACTION_KEY }}
           path: .github/workflows/sast/action
           # Checking out only SAST action and composite project configuration action
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
             actions/sast-action-test/action.yml
-          sparse-checkout-cone-mode: false
       - uses: ./.github/workflows/sast/action/action.yml
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
