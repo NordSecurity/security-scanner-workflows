@@ -64,7 +64,7 @@ jobs:
           sparse-checkout: |
             base/sast-action
             actions/${{ env.project-action-path }}
-      - uses: ./.github/workflows/sast/actions/${{ inputs.project-action-path }}
+      - uses: ./.github/workflows/sast/actions/${{ env.project-action-path }}
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
           SAST_URL: ${{ secrets.SAST_URL }}
