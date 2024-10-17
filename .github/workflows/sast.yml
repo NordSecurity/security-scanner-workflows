@@ -64,6 +64,9 @@ jobs:
           # Checking out only SAST action and composite project configuration action
           sparse-checkout: |
             base/sast-action
+      - name: LS
+        run: |
+          ls -lag .github/workflows/sast
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with: 
           repository: NordSecurity/sast-configs
@@ -74,6 +77,10 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             actions/sast-action-test/action.yml
+      - name: LS2
+        run: |
+          ls -lag .github/workflows/sast
+          ls -lag .github/workflows/sast/action
       - uses: ./.github/workflows/sast/action/action.yml
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
