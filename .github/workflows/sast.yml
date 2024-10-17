@@ -9,12 +9,13 @@ on:
       unc-branch-enabled:
         description: 'UNC branch enabled'
         required: true
+        type: boolean
         default: true
     secrets:
       SAST_ACTION_KEY:
         description: 'Key to access SAST action'
         required: true
-       UNC_ACTION_KEY:
+      UNC_ACTION_KEY:
         description: 'Key to access UNC action'
         required: true
       SAST_URL:
