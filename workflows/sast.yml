@@ -6,9 +6,16 @@ on:
         description: 'Path to the project specific action'
         required: true
         type: string
+      unc-branch-enabled:
+        description: 'UNC branch enabled'
+        required: true
+        default: true
     secrets:
       SAST_ACTION_KEY:
         description: 'Key to access SAST action'
+        required: true
+       UNC_ACTION_KEY:
+        description: 'Key to access UNC action'
         required: true
       SAST_URL:
         description: 'SAST URL'
@@ -62,5 +69,7 @@ jobs:
           SAST_USERNAME: ${{ secrets.SAST_USERNAME }}
           SAST_PASSWORD: ${{ secrets.SAST_PASSWORD }}
           SAST_CLIENT_SECRET: ${{ secrets.SAST_CLIENT_SECRET }}
+          UNC_ACTION_KEY: ${{ secrets.UNC_ACTION_KEY }}
+          UNC_BRANCH_ENABLED: ${{ inputs.unc-branch-enabled }}
 
 
