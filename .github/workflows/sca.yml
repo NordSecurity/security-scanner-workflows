@@ -21,7 +21,7 @@ on:
         required: true
 env:
   action-path: |
-    actions/${{ inputs.project-action-path }}/action.yml
+    SCA/${{ inputs.project-action-path }}/action.yml
 jobs:
   authorize:
     environment:
