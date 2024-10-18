@@ -81,7 +81,7 @@ jobs:
         run: |
           echo $ACTION
           echo ${ACTION}
-          full_path=".github/workflows/sast/action/actions/${{ env.ACTION }}/action.yml"
+          full_path=".github/workflows/sast/action/actions/$ACTION/action.yml"
           mv $full_path .github/workflows/sast/action/action.yml
       - uses: ./.github/workflows/sast/action
         with:
