@@ -79,7 +79,9 @@ jobs:
         env:
           action-name: ${{ inputs.project-action-path }}
         run: |
-          full_path=".github/workflows/sast/action/actions/${action-name}/action.yml"
+          echo $action-name
+          echo ${action-name}
+          full_path=".github/workflows/sast/action/actions/${{ env.action-name }}/action.yml"
           mv $full_path .github/workflows/sast/action/action.yml
       - uses: ./.github/workflows/sast/action
         with:
