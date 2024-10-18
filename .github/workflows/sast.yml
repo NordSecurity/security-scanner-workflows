@@ -76,7 +76,11 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: ${{ env.action-path }}
       - name: Move action
-        run: ${{ env.project-action-move-cmd }}
+        env:
+          action-name: ${{ inputs.project-action-path }}
+        run: |
+          full_path=".github/workflows/sast/action/actions/$action-name/action.yml
+          mv $full_path .github/workflows/sast/action/action.yml
       - uses: ./.github/workflows/sast/action
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
