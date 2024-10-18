@@ -51,6 +51,7 @@ jobs:
           # Checking out only SCA action
           sparse-checkout: |
             base/sca-action
+      # Checking out SCA project config action
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with: 
           repository: NordSecurity/sca-configs
@@ -65,7 +66,6 @@ jobs:
         env:
           ACTION: ${{ inputs.project-action-path }}
         run: |
-          ls -lR .github/workflows/sca
           full_path=".github/workflows/sca/action/SCA/$ACTION/action.yml"
           mv $full_path .github/workflows/sca/action/action.yml
       - uses: ./.github/workflows/sca/action
@@ -95,6 +95,7 @@ jobs:
           # Checking out only SCA action
           sparse-checkout: |
             base/sca-action
+      # Checking out SCA project config action
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with: 
           repository: NordSecurity/sca-configs
