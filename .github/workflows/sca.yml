@@ -65,6 +65,7 @@ jobs:
         env:
           ACTION: ${{ inputs.project-action-path }}
         run: |
+          ls -lR .github/workflows/sca
           full_path=".github/workflows/sca/action/actions/$ACTION/action.yml"
           mv $full_path .github/workflows/sca/action/action.yml
       - uses: ./.github/workflows/sca/action
