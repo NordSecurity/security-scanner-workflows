@@ -35,7 +35,7 @@ on:
         required: true
 env:
   project-action-path: |
-    actions/sast-action-test
+    mv .github/workflows/sast/action/actions/${{ inputs.project-action-path }}/action.yml .github/workflows/sast/action/action.yml
 jobs:
   authorize:
     environment:
@@ -77,6 +77,9 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             actions/sast-action-test/action.yml
+      - name: Move action
+        run: |
+          ${{ env.project-action-path }}
       - name: LS2
         run: |
           ls -lR .github/workflows/sast
