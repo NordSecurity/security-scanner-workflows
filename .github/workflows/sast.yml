@@ -34,8 +34,10 @@ on:
         description: 'SAST Client Secret'
         required: true
 env:
-  project-action-path: |
+  project-action-move-cmd: |
     mv .github/workflows/sast/action/actions/${{ inputs.project-action-path }}/action.yml .github/workflows/sast/action/action.yml
+  action-path: |
+    actions/${{ inputs.project-action-path }}/action.yml
 jobs:
   authorize:
     environment:
@@ -64,9 +66,6 @@ jobs:
           # Checking out only SAST action and composite project configuration action
           sparse-checkout: |
             base/sast-action
-      - name: LS
-        run: |
-          ls -lR .github/workflows/sast
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with: 
           repository: NordSecurity/sast-configs
@@ -75,14 +74,9 @@ jobs:
           path: .github/workflows/sast/action
           # Checking out only SAST action and composite project configuration action
           sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            actions/sast-action-test/action.yml
+          sparse-checkout: ${{ env.action-path }}
       - name: Move action
-        run: |
-          ${{ env.project-action-path }}
-      - name: LS2
-        run: |
-          ls -lR .github/workflows/sast
+        run: ${{ env.project-action-move-cmd }}
       - uses: ./.github/workflows/sast/action
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
