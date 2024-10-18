@@ -83,7 +83,7 @@ jobs:
       - name: LS2
         run: |
           ls -lR .github/workflows/sast
-      - uses: ./.github/workflows/sast/action/action.yml
+      - uses: ./.github/workflows/sast/action
         with:
           SAST_TEAM: ${{ secrets.SAST_TEAM }}
           SAST_URL: ${{ secrets.SAST_URL }}
