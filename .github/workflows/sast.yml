@@ -62,9 +62,9 @@ jobs:
           ssh-key: ${{ secrets.SAST_ACTION_KEY }}
           path: .github/workflows/sast
           persist-credentials: 'false'
-          # Checking out only SAST action
           sparse-checkout: |
             base/sast-action
+      # Checking out only project configuration action
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #v4.1.1
         with: 
           repository: NordSecurity/sast-configs
@@ -72,7 +72,6 @@ jobs:
           ssh-key: ${{ secrets.SAST_ACTION_KEY }}
           path: .github/workflows/sast/action
           persist-credentials: 'false'
-          # Checking out only project configuration action
           sparse-checkout-cone-mode: false
           sparse-checkout: ${{ env.action-path }}
       - name: Move action
@@ -90,5 +89,3 @@ jobs:
           SAST_CLIENT_SECRET: ${{ secrets.SAST_CLIENT_SECRET }}
           UNC_ACTION_KEY: ${{ secrets.UNC_ACTION_KEY }}
           UNC_BRANCH_ENABLED: ${{ inputs.unc-branch-enabled }}
-
-
