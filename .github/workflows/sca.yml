@@ -48,7 +48,6 @@ jobs:
           ssh-key: ${{ secrets.SCA_ACTION_KEY }}
           path: .github/workflows/sca
           persist-credentials: 'false'
-          # Checking out only SCA action
           sparse-checkout: |
             base/sca-action
       # Checking out SCA project config action
@@ -59,7 +58,6 @@ jobs:
           ssh-key: ${{ secrets.SCA_ACTION_KEY }}
           path: .github/workflows/sca/action
           persist-credentials: 'false'
-          # Checking out only project configuration action
           sparse-checkout-cone-mode: false
           sparse-checkout: ${{ env.action-path }}
       - name: Move action
@@ -92,7 +90,6 @@ jobs:
           ssh-key: ${{ secrets.SCA_ACTION_KEY }}
           path: .github/workflows/sca
           persist-credentials: 'false'
-          # Checking out only SCA action
           sparse-checkout: |
             base/sca-action
       # Checking out SCA project config action
@@ -103,7 +100,6 @@ jobs:
           ssh-key: ${{ secrets.SCA_ACTION_KEY }}
           path: .github/workflows/sca/action
           persist-credentials: 'false'
-          # Checking out only project configuration action
           sparse-checkout-cone-mode: false
           sparse-checkout: ${{ env.action-path }}
       - name: Move action
